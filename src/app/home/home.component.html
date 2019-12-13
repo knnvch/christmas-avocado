@@ -1,0 +1,11 @@
+<app-header></app-header>
+<main class="home">
+    <h2 class="home__title" >Эбаут</h2>
+    <section class="about">
+        <ul>
+            <li *ngFor="let feature of features">
+                <p>{{feature.name}} - {{feature.description}}</p>
+            </li>
+        </ul>
+    </section>
+</main>

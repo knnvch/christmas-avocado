@@ -1,0 +1,33 @@
+.app-header {
+    background: rgb(49, 49, 49);
+
+    &__container {
+        width: 800px;
+        height: 50px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+
+    &__title {
+        padding: 7px 0;
+    }
+
+    &__nav {
+        display: flex;
+    }
+
+    &__nav-link {
+        padding: 16px 20px;
+
+        &:hover {
+            border-bottom: 5px solid rgb(177, 220, 161);
+        }
+    }
+
+    &__title_white,
+    &__nav-link_white {
+        color: white;
+    }
+}

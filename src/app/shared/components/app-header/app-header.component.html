@@ -1,0 +1,12 @@
+<header class="app-header">
+    <div class="app-header__container">
+        <a class="app-header__title app-header__title_white" [routerLink]="homeLink">
+            <h1>Home</h1>
+        </a>
+        <nav class="app-header__nav">
+            <ng-container *ngFor="let tab of tabs">
+                <a class="app-header__nav-link app-header__nav-link_white" [routerLink]="tab.link">{{tab.name}}</a>
+            </ng-container>
+        </nav>
+    </div>
+</header>
