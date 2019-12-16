@@ -1,0 +1,33 @@
+<app-header></app-header>
+<main>
+    <section class="gallery">
+        <form class="filter" [formGroup]="filter" (ngSubmit)="onFilterSubmit()">
+            <div class="filter__control">
+                <input class="filter__input filter__input_large" id="search-query" type="text" formControlName="searchQuery" placeholder="Search">
+            </div>
+            <div class="filter__control">
+                <select class="filter__input" formControlName="imageType">
+                    <ng-container *ngFor="let imageType of imageTypes">
+                        <option [value]="imageType.value">{{imageType.title}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <div class="filter__control">
+                <select class="filter__input" formControlName="order">
+                    <ng-container *ngFor="let order of orders">
+                        <option [value]="order.value">{{order.title}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <div class="filter__control">
+                <button class="filter__input filter__button" type="submit">🥑</button>
+            </div>
+        </form>
+
+        <div class="pictures">
+            <ng-container *ngFor="let avocado of avocados">
+                <img class="avocado" src="{{avocado.webformatURL}}" alt="">
+            </ng-container>
+        </div>
+    </section>
+</main>
