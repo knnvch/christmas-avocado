@@ -1,2 +1,2 @@
-export * from './avocado';
-export * from './filter-select';
+export * from './filter.model';
+export * from './app-state.model';

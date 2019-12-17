@@ -2,6 +2,7 @@ import { FilterSelect } from '../models';
 
 export const API_KEY = '14561704-7d7db11c26cfc8b3ce2965319';
 export const HOME_ROUTER_LINK = '/home';
+export const FILTER_FEATURE_KEY = 'filter';
 
 export const FEATURES_CONFIG = [
     {
