@@ -11,7 +11,7 @@ export const initialState: Filter = {
 
 const filterReducer = createReducer(
     initialState,
-    on(setFilter, (state, newFilter) => ({ ...newFilter }))
+    on(setFilter, (state, newFilter) => ({ searchQuery: newFilter.searchQuery, imageType: newFilter.imageType, order: newFilter.order }))
 );
 
 export function reducer(state: Filter | undefined, action: Action) {

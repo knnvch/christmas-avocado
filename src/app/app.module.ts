@@ -14,7 +14,7 @@ import { environment } from '../environments/environment';
 @NgModule({
     declarations: [AppComponent],
     imports: [
-        StoreModule.forRoot({ [FILTER_FEATURE_KEY]: reducer }),
+        StoreModule.forRoot({}),
         StoreDevtoolsModule.instrument({
             maxAge: 25,
             logOnly: environment.production

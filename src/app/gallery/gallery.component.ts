@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
+
 import { IMAGE_TYPES, ORDERS } from '../shared/config/constants';
-import { FilterSelect, Avocado } from '../shared/models';
+import { FilterSelect, Avocado, Filter } from '../shared/models';
 import { ImageApiService } from './services/image-api.service';
+import { setFilter } from '../store/actions/filter.actions';
 
 @Component({
     selector: 'gallery',
@@ -15,7 +18,10 @@ export class GalleryComponent implements OnInit {
     public imageTypes: FilterSelect[];
     public orders: FilterSelect[];
 
-    constructor(private imageApiService: ImageApiService) {
+    constructor(
+        private imageApiService: ImageApiService,
+        private store: Store<Filter>
+    ) {
         this.avocados = [];
         this.imageTypes = IMAGE_TYPES;
         this.orders = ORDERS;
@@ -31,6 +37,7 @@ export class GalleryComponent implements OnInit {
     }
 
     public onFilterSubmit(): void {
+        // this.store.dispatch(setFilter(this.filter.value));
         this.getImages();
     }
 
