@@ -6,6 +6,8 @@ import { IMAGE_TYPES, ORDERS } from '../shared/config/constants';
 import { FilterSelect, Avocado, Filter } from '../shared/models';
 import { ImageApiService } from './services/image-api.service';
 import { setFilter } from '../store/actions/filter.actions';
+import { Observable } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
     selector: 'gallery',
@@ -13,7 +15,7 @@ import { setFilter } from '../store/actions/filter.actions';
     styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
-    public avocados: Avocado[] = [];
+    public avocados$: Observable<{ hits: Avocado[] }>;
     public filter: FormGroup;
     public imageTypes: FilterSelect[];
     public orders: FilterSelect[];
@@ -22,14 +24,17 @@ export class GalleryComponent implements OnInit {
         private imageApiService: ImageApiService,
         private store: Store<Filter>
     ) {
-        this.avocados = [];
         this.imageTypes = IMAGE_TYPES;
         this.orders = ORDERS;
         this.filter = new FormGroup({
-            searchQuery: new FormControl('avocado'),
-            imageType: new FormControl('all'),
+            searchQuery: new FormControl('space'),
+            imageType: new FormControl('photo'),
             order: new FormControl('popular')
         });
+
+        this.filter.valueChanges
+            .pipe(debounceTime(500))
+            .subscribe((filter: Filter) => this.getImages());
     }
 
     ngOnInit() {
@@ -37,14 +42,10 @@ export class GalleryComponent implements OnInit {
     }
 
     public onFilterSubmit(): void {
-        // this.store.dispatch(setFilter(this.filter.value));
         this.getImages();
     }
 
     private getImages(): void {
-        this.imageApiService.getImages(this.filter.value)
-            .subscribe((data: any) => {
-                this.avocados = data.hits;
-            });
+        this.avocados$ = this.imageApiService.getImages(this.filter.value);
     }
 }

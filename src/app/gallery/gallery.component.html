@@ -25,7 +25,7 @@
         </form>
 
         <div class="pictures">
-            <ng-container *ngFor="let avocado of avocados">
+            <ng-container *ngFor="let avocado of avocados$ | async">
                 <img class="avocado" src="{{avocado.webformatURL}}" alt="">
             </ng-container>
         </div>
